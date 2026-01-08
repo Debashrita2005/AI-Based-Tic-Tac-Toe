@@ -1,28 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>AI Tic Tac Toe</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    #board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .cell {
+      width: 100px;
+      height: 100px;
+      background: #1e293b;
+      font-size: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: background 0.3s;
+    }
+
+    .cell:hover {
+      background: #334155;
+    }
+
+    #status {
+      font-size: 20px;
+      margin: 10px 0;
+      min-height: 24px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #22c55e;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      color: black;
+    }
+
+    button:hover {
+      background: #16a34a;
+    }
+  </style>
 </head>
 <body>
 
-<h1>AI Tic Tac Toe</h1>
+  <h1>🤖 AI Tic Tac Toe</h1>
 
-<div id="board">
-  <div class="cell" data-index="0"></div>
-  <div class="cell" data-index="1"></div>
-  <div class="cell" data-index="2"></div>
-  <div class="cell" data-index="3"></div>
-  <div class="cell" data-index="4"></div>
-  <div class="cell" data-index="5"></div>
-  <div class="cell" data-index="6"></div>
-  <div class="cell" data-index="7"></div>
-  <div class="cell" data-index="8"></div>
-</div>
+  <div id="board">
+    <div class="cell" data-index="0"></div>
+    <div class="cell" data-index="1"></div>
+    <div class="cell" data-index="2"></div>
+    <div class="cell" data-index="3"></div>
+    <div class="cell" data-index="4"></div>
+    <div class="cell" data-index="5"></div>
+    <div class="cell" data-index="6"></div>
+    <div class="cell" data-index="7"></div>
+    <div class="cell" data-index="8"></div>
+  </div>
 
-<button onclick="restartGame()">Restart</button>
+  <div id="status"></div>
 
-<script src="script.js"></script>
+  <button onclick="restartGame()">Restart Game</button>
+
+  <script>
+    const cells = document.querySelectorAll(".cell");
+    const statusText = document.getElementById("status");
+
+    let board = ["", "", "", "", "", "", "", "", ""];
+    let gameOver = false;
+
+    const HUMAN = "X";
+    const AI = "O";
+
+    const WIN_PATTERNS = [
+      [0,1,2],[3,4,5],[6,7,8],
+      [0,3,6],[1,4,7],[2,5,8],
+      [0,4,8],[2,4,6]
+    ];
+
+    cells.forEach(cell => cell.addEventListener("click", handleClick));
+
+    function handleClick(e) {
+      if (gameOver) return;
+
+      const index = e.target.dataset.index;
+
+      if (board[index] !== "") return;
+
+      board[index] = HUMAN;
+      e.target.textContent = HUMAN;
+
+      if (checkWinner(HUMAN)) {
+        statusText.textContent = "🎉 You Win!";
+        gameOver = true;
+        return;
+      }
+
+      if (isDraw()) {
+        statusText.textContent = "🤝 It's a Draw!";
+        gameOver = true;
+        return;
+      }
+
+      aiMove();
+    }
+
+    function aiMove() {
+      let bestScore = -Infinity;
+      let move;
+
+      for (let i = 0; i < 9; i++) {
+        if (board[i] === "") {
+          board[i] = AI;
+          let score = minimax(board, 0, false);
+          board[i] = "";
+          if (score > bestScore) {
+            bestScore = score;
+            move = i;
+          }
+        }
+      }
+
+      board[move] = AI;
+      cells[move].textContent = AI;
+
+      if (checkWinner(AI)) {
+        statusText.textContent = "🤖 AI Wins!";
+        gameOver = true;
+      } else if (isDraw()) {
+        statusText.textContent = "🤝 It's a Draw!";
+        gameOver = true;
+      }
+    }
+
+    function minimax(board, depth, isMax) {
+      if (checkWinner(AI)) return 10 - depth;
+      if (checkWinner(HUMAN)) return depth - 10;
+      if (isDraw()) return 0;
+
+      if (isMax) {
+        let best = -Infinity;
+        for (let i = 0; i < 9; i++) {
+          if (board[i] === "") {
+            board[i] = AI;
+            best = Math.max(best, minimax(board, depth + 1, false));
+            board[i] = "";
+          }
+        }
+        return best;
+      } else {
+        let best = Infinity;
+        for (let i = 0; i < 9; i++) {
+          if (board[i] === "") {
+            board[i] = HUMAN;
+            best = Math.min(best, minimax(board, depth + 1, true));
+            board[i] = "";
+          }
+        }
+        return best;
+      }
+    }
+
+    function checkWinner(player) {
+      return WIN_PATTERNS.some(pattern =>
+        pattern.every(index => board[index] === player)
+      );
+    }
+
+    function isDraw() {
+      return board.every(cell => cell !== "");
+    }
+
+    function restartGame() {
+      board = ["", "", "", "", "", "", "", "", ""];
+      gameOver = false;
+      statusText.textContent = "";
+      cells.forEach(cell => cell.textContent = "");
+    }
+  </script>
+
 </body>
 </html>
