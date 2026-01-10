@@ -6,9 +6,7 @@ The project is deployed using **Vercel** and supports **offline play** via a Ser
 ---
 
 ## 🚀 Live Demo
-👉 https://your-project-name.vercel.app  
-(Replace with your actual Vercel URL)
-
+https://ai-based-tic-tac-2kho4nzy1-debashrita2005s-projects.vercel.app
 ---
 
 ## 📌 Features
