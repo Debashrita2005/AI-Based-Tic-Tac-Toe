@@ -42,4 +42,7 @@ The AI uses the **Minimax Algorithm**, which:
 
 ---
 
-## 📂 Project Structure
+## 📂 Project Structure 
+
+
+#Built by Debashrita Mandal
