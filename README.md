@@ -7,11 +7,11 @@ An intelligent **AI-powered Tic Tac Toe game** built using **HTML, CSS, and Java
 The project is deployed using **Vercel** and supports **offline play** via a Service Worker.
 
 ---
- Live Demo
+
 ## 🚀 Live Demo
 https://ai-based-tic-tac-2kho4nzy1-debashrita2005s-projects.vercel.app
 ---
-
+ Live Demo
 ## 📌 Features
 - 🎮 Human vs AI gameplay
 - 🧠 Unbeatable AI using Minimax algorithm
