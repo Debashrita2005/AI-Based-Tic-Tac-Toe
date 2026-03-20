@@ -23,7 +23,7 @@ https://ai-based-tic-tac-2kho4nzy1-debashrita2005s-projects.vercel.app
 - 🚀 Deployed on Vercel
 
 ---
-
+under preview
 ## 🧠 AI Logic
 The AI uses the **Minimax Algorithm**, which:
 - Explores all possible game states
