@@ -1,31 +1,4 @@
-# 🤖 AI-Based Tic Tac Toe Game
-
-under preview
-  AI-Based Tic Tac Toe Game
-
-An intelligent **AI-powered Tic Tac Toe game** built using **HTML, CSS, and JavaScript**, featuring an unbeatable AI using the **Minimax algorithm**.  
-The project is deployed using **Vercel** and supports **offline play** via a Service Worker.
-
----
-under preview
-## 🚀 Live Demo
-https://ai-based-tic-tac-2kho4nzy1-debashrita2005s-projects.vercel.app
----
- Live Demo
-## 📌 Features
-- 🎮 Human vs AI gameplay
-- 🧠 Unbeatable AI using Minimax algorithm
-- 🏆 Win / Lose / Draw detection
-- 🔁 Restart game functionality
-- ⚡ Fast and lightweight
-- 📱 Responsive UI
-- 🌐 Offline support using Service Worker
-- 🚀 Deployed on Vercel
-
----
-under preview
-## 🧠 AI Logic
-The AI uses the **Minimax Algorithm**, which:
+ which:
 - Explores all possible game states
 - Maximizes its chances of winning
 - Minimizes human winning opportunities
@@ -45,7 +18,4 @@ The AI uses the **Minimax Algorithm**, which:
 
 ---
 
-## 📂 Project Structure 
-
-
-#Built by Debashrita Mandal
+## 📂 Project Structu
