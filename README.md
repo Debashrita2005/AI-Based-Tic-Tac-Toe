@@ -1,5 +1,5 @@
 # 🎮 Tic-Tac-Toe AI (Unbeatable)
-
+**under preview/**
 ## 📌 Overview
 
 This project is an AI-powered Tic-Tac-Toe game where the player competes against an unbeatable computer opponent. The AI uses the **Minimax Algorithm** to ensure it never loses.
