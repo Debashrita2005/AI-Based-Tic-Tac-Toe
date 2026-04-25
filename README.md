@@ -74,8 +74,8 @@ Open index.html in your browser
 
 ## 🌐 Live Demo
 
-👉 Add your deployed link here (Vercel)
 
+👉 https://ai-based-tic-tac-toe-three.vercel.app
 ---
 
 ## 📷 Screenshots
